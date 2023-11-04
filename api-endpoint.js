@@ -12,7 +12,17 @@ router.get("/", (req, res) => {
 
 router.get("/api/scrapedData", async (req, res) => {
   //console.log(scrapeVolhaMenu());
-  const scrapedData = await scrapeVolhaMenu();
+  let scrapedData = {
+    volha: await scrapeVolhaMenu(),
+    jizniMesto: await scrapeVSEMenu(
+      "#avgastro-jm-week",
+      "https://www.vse.cz/menza/stravovani-jizni-mesto/"
+    ),
+    zizkov: await scrapeVSEMenu(
+      "#avgastro-zizkov-week",
+      "https://www.vse.cz/menza/stravovani-zizkov/"
+    ),
+  };
   res.json(scrapedData);
 });
 

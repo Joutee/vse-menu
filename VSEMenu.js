@@ -1,8 +1,9 @@
 const puppeteer = require("puppeteer");
 
 const scrapeVSEMenu = async (page, url) => {
+  const browser = await puppeteer.launch();
   const VSEPage = await browser.newPage();
-  await VSEPage.goto("url");
+  await VSEPage.goto(url);
 
   const readVSEPage = (page) => {
     const meals = document.querySelectorAll(`${page} > div > table > tbody`);
