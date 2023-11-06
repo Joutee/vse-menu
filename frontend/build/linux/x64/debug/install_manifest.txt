@@ -1,0 +1,12 @@
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/vse_menu_app
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/version.json
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/petr/vse-menu/client/vse_menu_app/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json

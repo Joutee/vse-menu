@@ -1,0 +1,4 @@
+#Mon Nov 06 17:06:02 CET 2023
+base.0=/home/petr/vse-menu/client/frontend/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
