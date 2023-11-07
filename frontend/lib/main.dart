@@ -2,9 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+Color darkgrey = Color.fromARGB(169, 99, 99, 99);
+MaterialColor myCustomMaterialColor = MaterialColor(darkgrey.value, {
+  50: darkgrey.withOpacity(0.1),
+  100: darkgrey.withOpacity(0.2),
+  200: darkgrey.withOpacity(0.3),
+  300: darkgrey.withOpacity(0.4),
+  400: darkgrey.withOpacity(0.5),
+  500: darkgrey.withOpacity(0.6), // The primary color
+  600: darkgrey.withOpacity(0.7),
+  700: darkgrey.withOpacity(0.8),
+  800: darkgrey.withOpacity(0.9),
+  900: darkgrey.withOpacity(1.0),
+});
+
 void main() async {
   Map<String, dynamic> jsonData = await fetchData();
-  print(jsonData['jizniMesto'][1]['meals'][0]);
+  //print(jsonData['jizniMesto'][1]['meals'][0]);
 
   runApp(MyApp(data: jsonData));
 }
@@ -18,11 +32,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      theme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: myCustomMaterialColor,
+        ),
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        primaryColor: Colors.red,
+        scaffoldBackgroundColor: Color.fromARGB(255, 59, 59, 59),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 163, 7, 7),
+        ),
+        textTheme: const TextTheme(
+          bodyLarge:
+              TextStyle(fontFamily: '', fontSize: 18, color: Colors.white),
+          bodyMedium: TextStyle(
+              fontFamily: 'Roboto',
+              fontSize: 25,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
+          displayLarge: TextStyle(color: Colors.white),
+          displayMedium: TextStyle(color: Colors.white),
+          displaySmall: TextStyle(color: Colors.white),
+          titleLarge: TextStyle(color: Colors.white),
+        ),
       ),
       home: HomePage(data: data),
     );
@@ -76,21 +108,41 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
           child: Column(
             children: <Widget>[
               AppBar(
-                title: const Center(child: Text('Volha')), // Dynamic title
+                title: const Center(
+                    child: Text('Volha',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontWeight: FontWeight.bold))), // Dynamic title
               ),
               for (int index = 0; index < VODaysList.length; index++)
                 Container(
+                  //padding: EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.only(
+                      left: 8.0, right: 8.0, top: 20.0, bottom: 20.0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(16.0)),
+                  //decoration: BoxDecoration(color: Colors.red),
                   child: Column(
                     children: [
-                      Text(VODaysList[index]['day']),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 163, 7, 7),
+                            borderRadius: BorderRadius.circular(16.0)),
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(child: Text(VODaysList[index]['day'])),
+                      ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: VODaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                              title:
-                                  Text(VODaysList[index]['meals'][mealIndex]));
+                            title: Text(VODaysList[index]['meals'][mealIndex],
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255))),
+                          );
                         },
                       ),
                     ],
@@ -104,22 +156,39 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
             children: <Widget>[
               AppBar(
                   title: const Center(
-                child: Text('Jižní Město AV Gastro'), // Dynamic title
+                child: Text('Jižní Město AV Gastro',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.bold)), // Dynamic title
               )),
               for (int index = 0; index < JMDaysList.length; index++)
                 Container(
-                  margin: const EdgeInsets.all(20.0),
+                  //padding: EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.only(
+                      left: 8.0, right: 8.0, top: 20.0, bottom: 20.0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(16.0)),
                   child: Column(
                     children: [
-                      Text(JMDaysList[index]['day']),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 163, 7, 7),
+                            borderRadius: BorderRadius.circular(16.0)),
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(child: Text(JMDaysList[index]['day'])),
+                      ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: JMDaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                              title:
-                                  Text(JMDaysList[index]['meals'][mealIndex]));
+                              title: Text(JMDaysList[index]['meals'][mealIndex],
+                                  style: const TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255))));
                         },
                       ),
                     ],
@@ -132,22 +201,41 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
           child: Column(
             children: <Widget>[
               AppBar(
-                title: const Center(child: Text('Žižkov menza AV Gastro')),
+                title: const Center(
+                    child: Text('Žižkov menza AV Gastro',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontWeight: FontWeight.bold))),
                 // Dynamic title
               ),
               for (int index = 0; index < ZIDaysList.length; index++)
                 Container(
+                  //padding: EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.only(
+                      left: 8.0, right: 8.0, top: 20.0, bottom: 20.0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(16.0)),
                   child: Column(
                     children: [
-                      Text(ZIDaysList[index]['day']),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 163, 7, 7),
+                            borderRadius: BorderRadius.circular(16.0)),
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(16.0),
+                        child: Center(child: Text(ZIDaysList[index]['day'])),
+                      ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
                         itemCount: ZIDaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                              title:
-                                  Text(ZIDaysList[index]['meals'][mealIndex]));
+                              title: Text(ZIDaysList[index]['meals'][mealIndex],
+                                  style: const TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255))));
                         },
                       ),
                     ],
