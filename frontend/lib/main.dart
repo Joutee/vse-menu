@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Color darkgrey = Color.fromARGB(169, 99, 99, 99);
+Color darkgrey = const Color.fromARGB(169, 99, 99, 99);
 MaterialColor myCustomMaterialColor = MaterialColor(darkgrey.value, {
   50: darkgrey.withOpacity(0.1),
   100: darkgrey.withOpacity(0.2),
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Color.fromARGB(255, 59, 59, 59),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 59, 59, 59),
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(255, 163, 7, 7),
         ),
@@ -62,12 +62,11 @@ class MyApp extends StatelessWidget {
 }
 
 Future<Map<String, dynamic>> fetchData() async {
-  final response =
-      await http.get(Uri.parse('http://10.0.2.2:3050/api/scrapedData'));
+  final response = await http
+      .get(Uri.parse('https://vse-menu-api.onrender.com/api/scrapedData'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> jsonData = json.decode(response.body);
-    print(jsonData);
     return jsonData; //FetchedData.fromJson(jsonData);
   } else {
     throw Exception('Failed to load data');
@@ -86,7 +85,7 @@ class HomePage extends StatelessWidget {
 
 class SwipeableWidget extends StatefulWidget {
   final Map<String, dynamic> data;
-  SwipeableWidget({required this.data});
+  const SwipeableWidget({required this.data});
   @override
   _SwipeableWidgetState createState() => _SwipeableWidgetState();
 }
@@ -140,7 +139,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
                             title: Text(VODaysList[index]['meals'][mealIndex],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 255, 255, 255))),
                           );
                         },
