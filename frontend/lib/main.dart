@@ -60,15 +60,11 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: FutureBuilder<Map<String, dynamic>>(
-        future: fetchData(), // Your asynchronous function
+        future: fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // Display a loading screen while waiting for data
-            return Scaffold(
-              //appBar: AppBar(
-              //  title: const Text('Loading...'),
-              //),
-              body: const Center(
+            return const Scaffold(
+              body: Center(
                 child: CircularProgressIndicator(),
               ),
             );
