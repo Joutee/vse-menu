@@ -17,15 +17,18 @@ MaterialColor myCustomMaterialColor = MaterialColor(darkgrey.value, {
 });
 
 void main() async {
-  Map<String, dynamic> jsonData = await fetchData();
+  //Map<String, dynamic> jsonData = await fetchData();
   //print(jsonData['jizniMesto'][1]['meals'][0]);
 
-  runApp(MyApp(data: jsonData));
+  runApp(MyApp(/*data: jsonData*/));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.data});
-  final Map<String, dynamic> data;
+  const MyApp({
+    super.key,
+    /*required this.data*/
+  });
+  //final Map<String, dynamic> data;
   // This widget is the root of your application.
 
   @override
@@ -56,7 +59,35 @@ class MyApp extends StatelessWidget {
           titleLarge: TextStyle(color: Colors.white),
         ),
       ),
-      home: HomePage(data: data),
+      home: FutureBuilder<Map<String, dynamic>>(
+        future: fetchData(), // Your asynchronous function
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Display a loading screen while waiting for data
+            return Scaffold(
+              //appBar: AppBar(
+              //  title: const Text('Loading...'),
+              //),
+              body: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (snapshot.hasError) {
+            // Handle errors
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Error'),
+              ),
+              body: Center(
+                child: Text('Failed to load data: ${snapshot.error}'),
+              ),
+            );
+          } else {
+            // Data has been fetched, display your HomePage
+            return HomePage(data: snapshot.data ?? {});
+          }
+        },
+      ),
     );
   }
 }
