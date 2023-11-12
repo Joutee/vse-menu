@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
 
 Future<Map<String, dynamic>> fetchData() async {
   final response = await http
-      .get(Uri.parse('https://vse-menu-api.onrender.com/api/scrapedData'));
+      .get(Uri.parse('https://vse-menu-apii.onrender.com/api/scrapedData'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> jsonData = json.decode(response.body);
