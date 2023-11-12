@@ -20,7 +20,7 @@ void main() async {
   //Map<String, dynamic> jsonData = await fetchData();
   //print(jsonData['jizniMesto'][1]['meals'][0]);
 
-  runApp(MyApp(/*data: jsonData*/));
+  runApp(const MyApp(/*data: jsonData*/));
 }
 
 class MyApp extends StatelessWidget {
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
 
 class SwipeableWidget extends StatefulWidget {
   final Map<String, dynamic> data;
-  const SwipeableWidget({required this.data});
+  const SwipeableWidget({super.key, required this.data});
   @override
   _SwipeableWidgetState createState() => _SwipeableWidgetState();
 }
@@ -122,12 +122,10 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final VODaysList = widget.data['volha'];
-    final JMDaysList = widget.data['jizniMesto'];
-    final ZIDaysList = widget.data['zizkov'];
-    return Container(
-        //color: const Color.fromARGB(255, 70, 70, 70),
-        child: PageView(
+    final voDaysList = widget.data['volha'];
+    final jmDaysList = widget.data['jizniMesto'];
+    final ziDaysList = widget.data['zizkov'];
+    return PageView(
       controller: _pageController,
       children: <Widget>[
         SingleChildScrollView(
@@ -140,7 +138,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                             color: Color.fromARGB(255, 255, 255, 255),
                             fontWeight: FontWeight.bold))), // Dynamic title
               ),
-              for (int index = 0; index < VODaysList.length; index++)
+              for (int index = 0; index < voDaysList.length; index++)
                 Container(
                   //padding: EdgeInsets.all(16.0),
                   margin: const EdgeInsets.only(
@@ -157,15 +155,15 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                             borderRadius: BorderRadius.circular(16.0)),
                         width: double.infinity,
                         padding: const EdgeInsets.all(16.0),
-                        child: Center(child: Text(VODaysList[index]['day'])),
+                        child: Center(child: Text(voDaysList[index]['day'])),
                       ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        itemCount: VODaysList[index]['meals'].length,
+                        itemCount: voDaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                            title: Text(VODaysList[index]['meals'][mealIndex],
+                            title: Text(voDaysList[index]['meals'][mealIndex],
                                 style: const TextStyle(
                                     color: Color.fromARGB(255, 255, 255, 255))),
                           );
@@ -187,7 +185,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.bold)), // Dynamic title
               )),
-              for (int index = 0; index < JMDaysList.length; index++)
+              for (int index = 0; index < jmDaysList.length; index++)
                 Container(
                   //padding: EdgeInsets.all(16.0),
                   margin: const EdgeInsets.only(
@@ -203,15 +201,15 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                             borderRadius: BorderRadius.circular(16.0)),
                         width: double.infinity,
                         padding: const EdgeInsets.all(16.0),
-                        child: Center(child: Text(JMDaysList[index]['day'])),
+                        child: Center(child: Text(jmDaysList[index]['day'])),
                       ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        itemCount: JMDaysList[index]['meals'].length,
+                        itemCount: jmDaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                              title: Text(JMDaysList[index]['meals'][mealIndex],
+                              title: Text(jmDaysList[index]['meals'][mealIndex],
                                   style: const TextStyle(
                                       color:
                                           Color.fromARGB(255, 255, 255, 255))));
@@ -234,7 +232,7 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                             fontWeight: FontWeight.bold))),
                 // Dynamic title
               ),
-              for (int index = 0; index < ZIDaysList.length; index++)
+              for (int index = 0; index < ziDaysList.length; index++)
                 Container(
                   //padding: EdgeInsets.all(16.0),
                   margin: const EdgeInsets.only(
@@ -250,15 +248,15 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
                             borderRadius: BorderRadius.circular(16.0)),
                         width: double.infinity,
                         padding: const EdgeInsets.all(16.0),
-                        child: Center(child: Text(ZIDaysList[index]['day'])),
+                        child: Center(child: Text(ziDaysList[index]['day'])),
                       ),
                       ListView.builder(
                         shrinkWrap: true,
                         physics: const ClampingScrollPhysics(),
-                        itemCount: ZIDaysList[index]['meals'].length,
+                        itemCount: ziDaysList[index]['meals'].length,
                         itemBuilder: (BuildContext context, int mealIndex) {
                           return ListTile(
-                              title: Text(ZIDaysList[index]['meals'][mealIndex],
+                              title: Text(ziDaysList[index]['meals'][mealIndex],
                                   style: const TextStyle(
                                       color:
                                           Color.fromARGB(255, 255, 255, 255))));
@@ -271,6 +269,6 @@ class _SwipeableWidgetState extends State<SwipeableWidget> {
           ),
         ),
       ],
-    ));
+    );
   }
 }

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.vse_menu_app-mergeReleaseResources-9:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.vsemenu.vse_menu_app-mergeReleaseResources-9:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "/home/petr/vse-menu/frontend/android/app/src/main/res/values-night/styles.xml",

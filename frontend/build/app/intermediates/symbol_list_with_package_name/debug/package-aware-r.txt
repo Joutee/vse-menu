@@ -1,4 +1,4 @@
-com.example.vse_menu_app
+com.vsemenu.vse_menu_app
 attr activityAction
 attr activityName
 attr alpha

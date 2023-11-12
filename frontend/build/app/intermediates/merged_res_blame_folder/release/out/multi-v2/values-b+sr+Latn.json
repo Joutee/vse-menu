@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.vse_menu_app-mergeReleaseResources-9:/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "outputFile": "com.vsemenu.vse_menu_app-mergeReleaseResources-9:/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
-                    "source": "/home/petr/.gradle/caches/transforms-3/7e9df2ac2213a6bd3cef0f2f27870d79/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "source": "/home/petr/.gradle/caches/transforms-3/9ae990dd2d4353842bc15594b2d8f0d6/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
