@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3050;
+const port = process.env.PORT || 4000;
 const router = express.Router();
 
 const { scrapeVolhaMenu } = require("./VolhaMenu.js");
