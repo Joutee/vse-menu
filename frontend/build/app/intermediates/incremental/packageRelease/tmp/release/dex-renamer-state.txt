@@ -1,4 +1,4 @@
-#Sun Nov 12 15:05:36 CET 2023
+#Wed Nov 15 12:34:58 CET 2023
 base.0=/home/petr/vse-menu/frontend/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

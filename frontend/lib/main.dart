@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 Color darkgrey = const Color.fromARGB(169, 99, 99, 99);
 MaterialColor myCustomMaterialColor = MaterialColor(darkgrey.value, {
@@ -88,6 +89,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
+void _launchPrivacyPolicyURL() async {
+  final url = Uri.parse('https://vseprivacypolicy6.webnode.cz/');
+  if (!await launchUrl(url)) {
+    throw 'Could not launch $url';
+  }
+}
+
 Future<Map<String, dynamic>> fetchData() async {
   final response = await http
       .get(Uri.parse('https://vse-menu-apii.onrender.com/api/scrapedData'));
@@ -106,7 +114,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SwipeableWidget(data: data));
+    return Scaffold(
+      body: SwipeableWidget(data: data),
+      bottomSheet: Container(
+        color: const Color.fromARGB(255, 163, 7, 7),
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(width: 8),
+            GestureDetector(
+              onTap: () {
+                _launchPrivacyPolicyURL(); // Open privacy policy URL
+              },
+              child: const Text(
+                'Privacy Policy',
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
