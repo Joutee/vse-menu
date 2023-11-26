@@ -11,42 +11,53 @@ router.get("/", (req, res) => {
   res.send("Hello, World!");
 });
 
-let scrapedData;
-
-const scrapeData = async () => {
-  try {
-    scrapedData = {
-      volha: await scrapeVolhaMenu(),
-      jizniMesto: await scrapeVSEMenu(
-        "#avgastro-jm-week",
-        "https://www.vse.cz/menza/stravovani-jizni-mesto/"
-      ),
-      zizkov: await scrapeVSEMenu(
-        "#avgastro-zizkov-week",
-        "https://www.vse.cz/menza/stravovani-zizkov/"
-      ),
-    };
-  } catch (error) {
-    console.error("Error scheduling daily task:", error);
-  }
-  return scrapedData;
-};
-
-schedule.scheduleJob("0 22 * * *", async function () {
-  await scrapeData();
-});
-
-schedule.scheduleJob("0 9 * * *", async function () {
-  await scrapeData();
-});
+//let scrapedData;
+//
+//const scrapeData = async () => {
+//  try {
+//    scrapedData = {
+//      volha: await scrapeVolhaMenu(),
+//      jizniMesto: await scrapeVSEMenu(
+//        "#avgastro-jm-week",
+//        "https://www.vse.cz/menza/stravovani-jizni-mesto/"
+//      ),
+//      zizkov: await scrapeVSEMenu(
+//        "#avgastro-zizkov-week",
+//        "https://www.vse.cz/menza/stravovani-zizkov/"
+//      ),
+//    };
+//  } catch (error) {
+//    console.error("Error scheduling daily task:", error);
+//  }
+//  return scrapedData;
+//};
+//
+//schedule.scheduleJob("0 22 * * *", async function () {
+//  await scrapeData();
+//});
+//
+//schedule.scheduleJob("0 9 * * *", async function () {
+//  await scrapeData();
+//});
 
 router.get("/api/scrapedData", async (req, res) => {
+  let scrapedData = {
+    volha: await scrapeVolhaMenu(),
+    jizniMesto: await scrapeVSEMenu(
+      "#avgastro-jm-week",
+      "https://www.vse.cz/menza/stravovani-jizni-mesto/"
+    ),
+    zizkov: await scrapeVSEMenu(
+      "#avgastro-zizkov-week",
+      "https://www.vse.cz/menza/stravovani-zizkov/"
+    ),
+  };
   res.json(scrapedData);
 });
 
 app.use("/", router);
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Server is running on port ${port}`);
-  scrapeData();
+  //await scrapeData();
 });
