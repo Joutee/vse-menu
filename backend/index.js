@@ -40,7 +40,7 @@ const scrapeData = async () => {
 //});
 
 router.get("/api/scrapedData", async (req, res) => {
-  scrapeData();
+  await scrapeData();
   //const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
   res.json(scrapedData);
