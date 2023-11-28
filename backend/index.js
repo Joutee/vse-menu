@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
 const router = express.Router();
-const schedule = require("node-schedule");
 const fs = require("fs");
 
 const { scrapeVolhaMenu } = require("./VolhaMenu.js");
@@ -28,22 +27,17 @@ const scrapeData = async () => {
       ),
     };
   } catch (error) {
-    console.error("Error scheduling daily task:", error);
+    console.error("Error", error);
   }
   return scrapedData;
 };
 
 router.get("/api/updateData", async (req, res) => {
   await scrapeData();
-  fs.writeFileSync(filePath, JSON.stringify(scrapedData));
+  fs.writeFile(filePath, JSON.stringify(scrapedData), (err) => {
+    if (err) throw err;
+  });
 });
-//schedule.scheduleJob("0 22 * * *", async function () {
-//  await scrapeData();
-//});
-//
-//schedule.scheduleJob("0 9 * * *", async function () {
-//  await scrapeData();
-//});
 
 router.get("/api/scrapedData", async (req, res) => {
   //let scrapedData = {
